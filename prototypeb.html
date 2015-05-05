@@ -1,42 +1,37 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
-<!-- Need to continue to work on this, my number are not showing up on the screen-->
+ 
 <html>
 
 <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="javascript" type="text/javascript">
+    <script="javascript" type="text/javascript"></script>
 
 
 </head>
 
 
 <body>
-  <style>
+  <script>
       
-         function input_digit(1) {
-               var number0=$("1").val(); 
-            
-            $("#inputdisplay").html(number0);
- 
-   
-          console.log('result:  ', number0);mber0  = x;
-            //var number0 = $("#number_0").val();
-           // var number1 = $("#number_1").val();
-            //var result = (parseInt(number0) + parseInt(number1));
-            console.log('function num:  ',number0 );
+         function input_digit(number) {
+             var inputval=$("#inputdisplay").val(); 
+             var argument_number = number;
+             var concatenated_number = inputval + argument_number;
+             $('#inputdisplay').val(concatenated_number);
+
           
            
         }
     
    
-    </style>  
+   </script>  
     
     <h2>Calculator Prototype B</h2>
  
-<p id="inputdisplay"> </p>
+ 
 <input id="inputdisplay" placeholder="Ready">
      <br>
      <button type="button" onclick="input_digit(1)">1</button>
@@ -54,7 +49,8 @@
      <button type="button" onclick="input_digit(0)">0</button>
          
   
-         
+</body>
+</html>
          
          
          
