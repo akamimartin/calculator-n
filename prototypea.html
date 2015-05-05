@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="javascript" type="text/javascript">
+
+
+</head>
+
+
+<body>
+
+    <h2>Calculator Prototype A </h2>
+
+    <input id="number_0" placeholder="number 0" type="text" class="input1" value="0">
+    <span id="operator"> + </span>
+
+    <input id="number_1" placeholder="number 1" type="text" class="input2" value="0">    
+
+    <br>
+    <br>
+    <button onclick="add()">+</button>
+    <button onclick="subtract()">-</button>
+    <button onclick="times()">*</button>
+    <button onclick="dividenum()">/</button>
+  
+    <div> 
+      <p> The Answer is: <span id="result_display">  </span></p>    
+    </div>
+
+    <script>
+      
+        function add() {
+            var number0 = $("#number_0").val();
+            var number1 = $("#number_1").val();
+            var result = (parseInt(number0) + parseInt(number1));
+            console.log('result:  ', result);
+          $("#result_display").html(result);
+            $("#operator").html("+");
+        }
+
+        function subtract() {
+            var number0 = $("#number_0").val();
+            var number1 = $("#number_1").val();
+            var result = (parseInt(number0) - parseInt(number1));
+            $("#result_display").html(result);
+            $("#operator").html("-");
+        }
+
+        function times() {
+            var number0 = $("#number_0").val();
+            var number1 = $("#number_1").val();
+            var result = (parseInt(number0) * parseInt(number1));
+            $("#result_display").html(result);
+            $("#operator").html("*");
+        }
+
+        function dividenum() {
+            var number0 = $("#number_0").val();
+            var number1 = $("#number_1").val();
+            var result = (parseInt(number0) / parseInt(number1));
+            $("#result_display").html(result);
+            $("#operator").html("/");
+        }
+    </script>
+
+</body>
+
+</html>
