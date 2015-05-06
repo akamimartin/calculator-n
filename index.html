@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script="javascript" type="text/javascript"></script>
+
+
+</head>
+
+<body>
+    <script>
+        var number_array = ['', ''];
+        var number_index = 0; //var jordan
+        var temp_num = '';
+        var operator = '';
+        //$(document).ready(function () {
+            function input_digit(typed_number) {
+                number_array[number_index] = number_array[number_index] + typed_number;
+                $("#inputdisplay").val(number_array[number_index]);
+                console.log("number_array : ", number_array);
+            }
+        
+            function addition() {
+                number_index = 1;
+                operator = '+';
+                console.log("number_array : ", number_array);
+            }
+
+            function subtraction() {
+                number_index = 1;
+                operator = '-';
+                console.log("number_array : ", number_array);
+            }
+            function multiply() {
+                number_index = 1;
+                operator = '*';
+                console.log("number_array : ", number_array);
+            }
+            function divide() {
+                number_index = 1;
+                operator = '/';
+                console.log("number_array : ", number_array);
+            }
+            function calculate() {
+                switch (operator) {
+                case "+":
+                    result = parseInt(number_array[0]) + parseInt(number_array[1]);
+                     
+                    break;
+                case "-":
+                    result = parseInt(number_array[0]) - parseInt(number_array[1]);
+                
+                    break;
+                case "*":
+                    result = parseInt(number_array[0]) * parseInt(number_array[1]);
+                
+                    break;
+                case "/":
+                    result = parseInt(number_array[0]) / parseInt(number_array[1]);
+                    
+                    break;
+                }
+
+                    $("#inputdisplay").val(result);
+                    console.log("number_array : ", number_array);
+
+                }
+              
+     
+    </script>
+
+
+    <input id="inputdisplay" placeholder="Ready">
+    <br>
+    <button type="button" onclick="input_digit(1)">1</button>
+    <button type="button" onclick="input_digit(2)">2</button>
+    <button type="button" onclick="input_digit(3)">3</button>
+    <br>
+    <button type="button" onclick="input_digit(4)">4</button>
+    <button type="button" onclick="input_digit(5)">5</button>
+    <button type="button" onclick="input_digit(6)">6</button>
+    <br>
+    <button type="button" onclick="input_digit(7)">7</button>
+    <button type="button" onclick="input_digit(8)">8</button>
+    <button type="button" onclick="input_digit(9)">9</button>
+    <br>
+    <button type="button" onclick="input_digit(0)">0</button>
+
+
+    <button type="button" onclick="addition()">+</button>
+
+
+    <button type="button" onclick="subtraction()">-</button>
+
+
+    <button type="button" onclick="multiply()">*</button>
+
+
+    <button type="button" onclick="divide()">/</button>
+
+    <button type="button" onclick="calculate()">=</button>
+
+
+
+
+</body>
+
+</html>
