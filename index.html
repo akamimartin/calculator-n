@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!--Assignment - includes Calculator 0.1, 0.5 and 1 -->
 <html>
 
 <head>
@@ -13,97 +14,152 @@
 
 <body>
     <script>
+        var errmsg = "Error";
         var number_array = ['', ''];
         var number_index = 0; //var jordan
         var temp_num = '';
         var operator = '';
         //$(document).ready(function () {
-            function input_digit(typed_number) {
-                number_array[number_index] = number_array[number_index] + typed_number;
-                $("#inputdisplay").val(number_array[number_index]);
-                console.log("number_array : ", number_array);
-            }
-        
-            function addition() {
-                number_index = 1;
-                operator = '+';
-                console.log("number_array : ", number_array);
-            }
+        function input_digit(typed_number) {
+            number_array[number_index] = number_array[number_index] + typed_number;
+            $("#inputdisplay").val(number_array[number_index]);
+        }
 
-            function subtraction() {
-                number_index = 1;
-                operator = '-';
-                console.log("number_array : ", number_array);
-            }
-            function multiply() {
-                number_index = 1;
-                operator = '*';
-                console.log("number_array : ", number_array);
-            }
-            function divide() {
-                number_index = 1;
-                operator = '/';
-                console.log("number_array : ", number_array);
-            }
-            function calculate() {
-                switch (operator) {
-                case "+":
-                    result = parseInt(number_array[0]) + parseInt(number_array[1]);
-                     
-                    break;
-                case "-":
-                    result = parseInt(number_array[0]) - parseInt(number_array[1]);
-                
-                    break;
-                case "*":
-                    result = parseInt(number_array[0]) * parseInt(number_array[1]);
-                
-                    break;
-                case "/":
-                    result = parseInt(number_array[0]) / parseInt(number_array[1]);
-                    
-                    break;
-                }
+        function addition() {
+            number_index = 1;
+            operator = '+';
 
+        }
+
+
+        function subtraction() {
+            number_index = 1;
+            operator = '-';
+
+        }
+
+        function multiply() {
+            number_index = 1;
+            operator = '*';
+
+        }
+
+        function divide() {
+            number_index = 1;
+            operator = '/';
+
+        }
+
+        function refresh() {
+            $("#inputdisplay").val("");
+            number_array[0] = "";
+            number_array[1] = "";
+            number_index = 0;
+        }
+
+        function clearnumber() {
+            var current_index = this.number_index;
+            number_array[current_index] = 0;
+            $("#inputdisplay").val("");
+        }
+
+        function calcpercent() {
+            var percentindex = this.number_index;
+            number_array[number_index] = number_array[percentindex] / 100;
+            $("#inputdisplay").val(number_array[number_index]);
+
+        }
+
+
+        function exponent() {
+            number_index = 1;
+            operator = '^';
+        }
+
+
+        function signs() {
+            var numwithsign = -number_array[number_index];
+            number_array[number_index] = numwithsign;
+            $("#inputdisplay").val(number_array[number_index]);
+            numwithsign = 0;
+        }
+
+
+        function calculate() {
+            switch (operator) {
+            case "+":
+                result = parseFloat(number_array[0]) + parseFloat(number_array[1]);
+                $("#inputdisplay").val(result);
+                break;
+            case "-":
+                result = parseFloat(number_array[0]) - parseFloat(number_array[1]);
+                $("#inputdisplay").val(result);
+                break;
+            case "*":
+                result = parseFloat(number_array[0]) * parseFloat(number_array[1]);
+                $("#inputdisplay").val(result);
+                break;
+            case "/":
+                var bothnum = parseFloat(number_array[0]) + parseFloat(number_array[1]);
+                if (parseFloat(number_array[1]) == 0) {
+                    $("#inputdisplay").val(errmsg);
+                } else if (bothnum == 0) {
+                    $("#inputdisplay").val(errmsg);
+                } else {
+                    result = parseFloat(number_array[0]) / parseFloat(number_array[1]);
                     $("#inputdisplay").val(result);
-                    console.log("number_array : ", number_array);
+                    bothnum = 0;
 
                 }
-              
-     
+                break;
+
+            case "^":
+                var result = 1;
+                var numindex = number_array[1];
+
+                for (i = 0; i < numindex; i++) {
+                    result = parseFloat(number_array[0]) * parseFloat(result);
+                }
+                $("#inputdisplay").val(result);
+                parseFloat(number_array[0]) = 0;
+                parseFloat(number_array[1]) = 0;
+            }
+        }
     </script>
 
 
     <input id="inputdisplay" placeholder="Ready">
     <br>
-    <button type="button" onclick="input_digit(1)">1</button>
-    <button type="button" onclick="input_digit(2)">2</button>
-    <button type="button" onclick="input_digit(3)">3</button>
-    <br>
-    <button type="button" onclick="input_digit(4)">4</button>
-    <button type="button" onclick="input_digit(5)">5</button>
-    <button type="button" onclick="input_digit(6)">6</button>
+    <button type="button" onclick="refresh()">AC</button>
+    <button type="button" onclick="signs()">+/-</button>
+    <button type="button" onclick="calcpercent()">%</button>
+    <button type="button" onclick="exponent()">^</button>
+    <button type="button" onclick="divide()">/</button>
+
+
     <br>
     <button type="button" onclick="input_digit(7)">7</button>
     <button type="button" onclick="input_digit(8)">8</button>
     <button type="button" onclick="input_digit(9)">9</button>
-    <br>
-    <button type="button" onclick="input_digit(0)">0</button>
-
-
-    <button type="button" onclick="addition()">+</button>
-
-
-    <button type="button" onclick="subtraction()">-</button>
-
 
     <button type="button" onclick="multiply()">*</button>
 
 
-    <button type="button" onclick="divide()">/</button>
-
+    <br>
+    <button type="button" onclick="input_digit(4)">4</button>
+    <button type="button" onclick="input_digit(5)">5</button>
+    <button type="button" onclick="input_digit(6)">6</button>
+    <button type="button" onclick="subtraction()">-</button>
+    <br>
+    <button type="button" onclick="input_digit(1)">1</button>
+    <button type="button" onclick="input_digit(2)">2</button>
+    <button type="button" onclick="input_digit(3)">3</button>
+    <button type="button" onclick="addition()">+</button>
+    <br>
+    <button type="button" onclick="clearnumber()">C</button>
+    <button type="button" onclick="input_digit(0)">0</button>
+    <button type="button" onclick="input_digit('.')">.</button>
     <button type="button" onclick="calculate()">=</button>
-
 
 
 
