@@ -15,23 +15,70 @@
 <body>
     <script>
         var errmsg = "Error";
+        var numString = "";
         var number_array = ['', ''];
         var number_index = 0; //var jordan
         var temp_num = '';
         var operator = '';
+        var cnextoper = '';
+        var first_time = true;
+        var answer = 0;
         //$(document).ready(function () {
         function input_digit(typed_number) {
-            number_array[number_index] = number_array[number_index] + typed_number;
-            $("#inputdisplay").val(number_array[number_index]);
+            console.log("input_digit - typed" ,typed_number)
+          //  numString += typed_number;
+            //console.log("in the input: ", numString);
+            number_array[number_index] = number_array[number_index] + typed_number; 
+            console.log("in the input array: ",  number_array  );
+             $("#inputdisplay").val(number_array[number_index]);
+          //  $("#inputdisplay").val(numString);
+             
         }
 
         function addition() {
-            number_index = 1;
+            
+            console.log("in addition");
+             console.log("addition:" , number_array);
             operator = '+';
-
+          //  numString += " + ";
+          $("#inputdisplay").val(number_array[number_index]);
+            morenumbers();
         }
-
-
+            
+                      
+        function morenumbers() { 
+          console.log("after more numbers")  
+           console.log("more:" , number_array); 
+           console.log("first_time")
+          //  $("#inputdisplay").val(numString);
+          $("#inputdisplay").val(number_array[number_index] );
+             if(first_time) {    
+                number_index = 1;
+                console.log("more first time:" , number_array);
+                console.log("more  first time sw:" , first_time);
+                first_time = false;
+                console.log("more  first time sw:" , first_time);
+            }else if( number_array[1] == "") {
+                  console.log("more - elseif" , number_array);
+                   number_array[0] = number_array[0] * 2;
+                   number_array[1] =   '';
+                   console.log("more - elseif" , number_array);
+                    $("#inputdisplay").val(number_array[0] );
+        } else {
+             
+             calculate();
+              console.log("more else" , number_array, first_time);
+             number_array[0] = answer;
+            number_array[1] = 0;
+             console.log("more else" , number_array);
+             console.log("more else first time sw:" , first_time);
+            first_time = true;
+              
+        }
+     }
+        
+        
+        
         function subtraction() {
             number_index = 1;
             operator = '-';
@@ -78,52 +125,83 @@
 
 
         function signs() {
+            console.log("insigns: " )
             var numwithsign = -number_array[number_index];
             number_array[number_index] = numwithsign;
+            console.log("insigns: " ,number_array ) ;
+            console.log("insigns index: " , number_index );
             $("#inputdisplay").val(number_array[number_index]);
             numwithsign = 0;
         }
-
+        
+        function equalButton(){
+              console.log("equalbutton before the", number_array);
+             if(number_array[1] == ""){
+               console.log("equalbutton right after if ", number_array)
+               $("#inputdisplay").val(number_array[0]); }
+             
+            console.log("equalbutton")
+            calculate();
+            //numString += " = " + answer;
+            console.log("in equal button before display")
+            $("#inputdisplay").val(answer);
+              number_array[1] = "";
+              number_array[0] = answer;
+              console.log("in equal button after inititlize display" ,  number_array)
+        }
 
         function calculate() {
-            switch (operator) {
-            case "+":
-                result = parseFloat(number_array[0]) + parseFloat(number_array[1]);
-                $("#inputdisplay").val(result);
-                break;
-            case "-":
-                result = parseFloat(number_array[0]) - parseFloat(number_array[1]);
-                $("#inputdisplay").val(result);
-                break;
-            case "*":
-                result = parseFloat(number_array[0]) * parseFloat(number_array[1]);
-                $("#inputdisplay").val(result);
-                break;
-            case "/":
-                var bothnum = parseFloat(number_array[0]) + parseFloat(number_array[1]);
-                if (parseFloat(number_array[1]) == 0) {
-                    $("#inputdisplay").val(errmsg);
-                } else if (bothnum == 0) {
-                    $("#inputdisplay").val(errmsg);
-                } else {
-                    result = parseFloat(number_array[0]) / parseFloat(number_array[1]);
+            var result;
+            if(number_array[1] == "") {
+                result = parseFloat(number_array[0]);
+            } else {
+
+                switch (operator) {
+                case "+":
+                    console.log("in calculate- add",  number_array);
+                    result = parseFloat(number_array[0]) + parseFloat(number_array[1]);
+                     console.log("in calculate - add after",  number_array);
+                     console.log("in calculate - add after",  result);
+                    //$("#inputdisplay").val(result);
+                    
+                    break;
+                case "-":
+                    result = parseFloat(number_array[0]) - parseFloat(number_array[1]);
                     $("#inputdisplay").val(result);
-                    bothnum = 0;
+                    break;
+                case "*":
+                    result = parseFloat(number_array[0]) * parseFloat(number_array[1]);
+                    $("#inputdisplay").val(result);
+                    break;
+                case "/":
+                    var bothnum = parseFloat(number_array[0]) + parseFloat(number_array[1]);
+                    if (parseFloat(number_array[1]) == 0) {
+                        $("#inputdisplay").val(errmsg);
+                    } else if (bothnum == 0) {
+                        $("#inputdisplay").val(errmsg);
+                    } else {
+                        result = parseFloat(number_array[0]) / parseFloat(number_array[1]);
+                        $("#inputdisplay").val(result);
+                        bothnum = 0;
 
-                }
-                break;
+                    }
+                    break;
 
-            case "^":
-                var result = 1;
-                var numindex = number_array[1];
+                case "^":
+                    var result = 1;
+                    var numindex = number_array[1];
 
-                for (i = 0; i < numindex; i++) {
-                    result = parseFloat(number_array[0]) * parseFloat(result);
-                }
-                $("#inputdisplay").val(result);
-                parseFloat(number_array[0]) = 0;
-                parseFloat(number_array[1]) = 0;
+                    for (i = 0; i < numindex; i++) {
+                        result = parseFloat(number_array[0]) * parseFloat(result);
+                    }
+                    $("#inputdisplay").val(result);
+                    parseFloat(number_array[0]) = 0;
+                    parseFloat(number_array[1]) = 0;
+                } 
             }
+          answer = result;   
+          console.log("end of case" ,answer);
+          $("#inputdisplay").val(answer);
         }
     </script>
 
@@ -159,8 +237,9 @@
     <button type="button" onclick="clearnumber()">C</button>
     <button type="button" onclick="input_digit(0)">0</button>
     <button type="button" onclick="input_digit('.')">.</button>
-    <button type="button" onclick="calculate()">=</button>
-
+    <!--<button type="button" onclick="calculate()">=</button>-->
+    <button type="button" onclick="equalButton()">=</button>
+    <button type="button" onclick="plusequal()">"+="</button>
 
 
 </body>
