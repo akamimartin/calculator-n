@@ -7,34 +7,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script="javascript" type="text/javascript"></script>
         <style>
-            #container {
-                height: 900px;
-                width: 600px;
+
+             #containerall {
+                border-radius: 15px;        
+                height: 300px;
+                width: 350px;
                 background-color: purple;
-                color: white;
-                position: relative;
-            }
-            
-            #screendisplay {
-                text-align: center;
+           }
+
+            #inputdisplay  {
+                margin-top: 10px;
+                 margin-bottom: 10px;
+                width: 300px;
                 background-color: white;
-                margin: 5px;
-                width: 600px;
                 border-radius: 15px;
-                box-shadow: 4 5 20 10px;
                 border: 1px solid darkpurple;
-                height: 85px;
+                height: 35px;
             }
             
             button {
                 background-color: white;
                 margin-top: 40px;
                 margin: 5px;
-                height: 55px;
-                s width: 60px;
-                border-radius: 15px;
-                box-shadow: 4 5 20 10px;
-                padding: 30px;
+                height: 35px;
+                  width: 40px;
+                border-radius: 35px;
+                 
+                padding: 10px;
                 border: 1px solid darkpurple;
             }
         </style>
@@ -47,68 +46,97 @@
         //var number_array = ['', ''];
         var number_array = [""];
         var fullnumarray = [];
-        var number_index = 0; //var jordan
+        var number_index = 0;
+        var previous_index = 0;//var jordan
         var temp_num = '';  
         var operator = '';
         var cnextoper = '';
         var first_time = true;
         var answer = 0;
+        var operator_function = false;
         //$(document).ready(function () {
         function input_digit(typed_number) {
+          
 
+           
             console.log("input_digit - typed", typed_number)
              numString += typed_number;
              console.log("in the input: ", numString);
-
-            number_array[number_index] = number_array[number_index] + typed_number;
+               console.log("in the input typednumber: ", typed_number);
+           console.log("in the input index: ", number_index);
+ 
+ 
+           number_array[number_index] = number_array[number_index] + typed_number;
+            console.log("input number array after=: ", number_array);
+            console.log("inputnumber_index", number_index);
            // fullnum_array[number_index] = number_array[number_index] + typed_number;
          
-             $("#inputdisplay").val( numString);
-
-             number_index + 1;
-
             
+               console.log("number array after index: ", number_array);
+            console.log("number_index after index", number_index);
+        
+             $("#inputdisplay").val( numString);
+             
+             
            // $("#inputdisplay").val(numString);
 
         }
 
         function addition() {
 
+
            console.log("in addition");
            operator = "+";    
            numString += operator;
 
-            number_array.push("+");a
+            number_array.push("+"); 
              
      
            console.log("in addition number array", number_array);
+
           
            $("#inputdisplay").val(numString );
             
           /*  morenumbers(); */
         }
 
-        processAllNum{i
+        function processAllNum() { 
+            console.log("processallnum");
             var num1 = 0;
             var num2 = 0;
             var savenum = 0;
             var saveindex1 =0;
             var saveindex2 =0;
             var i = 0;
+
             arraylength = number_array.length;
-            for( i < arraylength i++) {
-                 if(number_array [i] = "*" || "/")
+            for( i = 0; i < arraylength ; i++) {
+                  console.log("arraylength", arraylength);
+                  console.log("number_array", number_array);
+                if(number_array [i] = "*" || "/") {
+                   saveindex1 = i - 1;
+                   saveindex2 = i + 1;
+                   savenum = number_array[saveindex1] * number_array[saveindex2];
+                   number_array[saveindex1] = savenum;
+                   saveindex = + 1;
+                   number_array = number_array.slice(saveindex1, saveindex2);
+                 }
+                  $("#inputdisplay").val(savenum);
+             }
+
+
+              /*  }else { if(number_array [i] = "-" || "+")
                     saveindex1 = i - 1;
-                    saveindex2 = i + 2;
-                    savenum = number_array[1] * number_array[2]
-                     var deletearray = number_array.slice(saveindex1, saveindex2);
+                    saveindex2 = i + 1;
+                    savenum = number_array[saveindex1] * number_array[saveindex2];
+                    number_array[saveindex1] = savenum
+                    saveindex = + 1;
+                     var deletearray = number_array.slice(saveindex1, saveindex2); ) */
+                
+                }
+             
 
-
-             )
-            }
-
-
-        }
+         
 
 
         function morenumbers() {
@@ -158,20 +186,42 @@
 
 
         function multiply() {
-            console.log("Multiply")
-            calcfullstring()
-            console.log("number_array", number_array)
+            operator_function = true;
+           console.log("Multiply");
+            number_index = number_index + 1; 
+           console.log("number_array", number_array);
+           console.log("number_array index", number_index);
+           operator = "*";    
+           numString += operator;
+            number_array.push("*"); 
+            number_array.push("");
+            
+           console.log("in multiply number array", number_array);
+          
+            //number_index = number_index + 1; 
+             console.log("in multiply index", number_index);
+             $("#inputdisplay").val(numString );
+             number_index ++;
+            //calcfullstring()
+          /*  console.log("number_array", number_array)
             number_index = 1;
             operator = '*';
-            //  numString += " + ";
+              numString += " + ";
             $("#inputdisplay").val(number_array[number_index]);
             console.log("addition after input", number_array[number_index]);
-            morenumbers();
+            morenumbers();  */
         }
 
         function divide() {
             console.log("divide")
-            calcfullstring()
+
+           console.log("number_array", number_array);
+           operator = "/";    
+           numString += operator;
+           number_array.push("/"); 
+           console.log("in divide number array", number_array);
+           $("#inputdisplay").val(numString );
+           /* calcfullstring()
             number_index = 1;
             operator = '/';
             console.log("divide")
@@ -180,7 +230,7 @@
             //  numString += " + ";
             $("#inputdisplay").val(number_array[number_index]);
             console.log("divide after input", number_array[number_index]);
-            morenumbers();
+            morenumbers(); */
         }
 
         function refresh() {
@@ -326,14 +376,16 @@
             console.log("end of case - answer", number_array);
         }
     </script>
-    <div id="container" <div id="screendisplay">
+    <div id="containerall">
+    <div id="container"
+     <div id="screendisplay"></div>
         <input id="inputdisplay" placeholder="Ready">
         <br>
         <button type="button" onclick="refresh()">AC</button>
         <button type="button" onclick="signs()">+/-</button>
         <button type="button" onclick="calcpercent()">%</button>
         <button type="button" onclick="exponent()">^</button>
-        <button type="button" onclick="calcfullstring()">/</button>
+        <button type="button" onclick="divide()">/</button>
         <br>
         <button type="button" onclick="input_digit(7)">7</button>
         <button type="button" onclick="input_digit(8)">8</button>
@@ -354,11 +406,11 @@
         <button type="button" onclick="input_digit(0)">0</button>
         <button type="button" onclick="input_digit('.')">.</button>
         <!--<button type="button" onclick="calculate()">=</button>-->
-        <button type="button" onclick="calcfullstring()">=</button>
+        <button type="button" onclick="processAllNum()">=</button>
         
        <!-- <button type="button" onclick="equalButton()">=</button> -->
     </div>
-    </div>
+  </div>
 </body>
 
 </html>
