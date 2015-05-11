@@ -9,30 +9,35 @@
         <style>
             #containerall {
                 border-radius: 15px;
-                height: 300px;
+                height: 400px;
                 width: 350px;
                 background-color: purple;
             }
             
             #inputdisplay {
-                margin-top: 10px;
+                margin-left: 7px;
+                margin-top: 15px;
                 margin-bottom: 10px;
                 width: 300px;
                 background-color: white;
                 border-radius: 15px;
-                border: 1px solid darkpurple;
+                font-size: 20px;
+                color: purple;
                 height: 35px;
+                border: 2px solid white;
             }
             
             button {
+                margin-left: 7px;
                 background-color: white;
                 margin-top: 40px;
                 margin: 5px;
-                height: 35px;
-                width: 40px;
-                border-radius: 35px;
-                padding: 10px;
-                border: 1px solid darkpurple;
+                height: 45px;
+                width: 50px;
+                border-radius: 25px;
+                border: 2px solid white;
+                color: purple;
+                font-size: 20px;
             }
         </style>
 </head>
@@ -42,7 +47,7 @@
         var errmsg = "Error";
         var numString = "";
         //var number_array = ['', ''];
-        var number_array = ['']; 
+        var number_array = [''];
         var fullnumarray = [];
         var number_index = 0;
         var previous_index = 0; //var jordan
@@ -54,32 +59,33 @@
         var operatorused = false;
         //$(document).ready(function () {
         function input_digit(typed_number) {
-           console.log("in input before if" ,operatorused);
-            if(operatorused ) { 
-                number_index = number_index + 1;
-            number_array.push(typed_number);
-            console.log("input number array in if=: ", number_array);
-            console.log("inputnumber_index in if", number_index);
-              numString += typed_number;
-            
-        }else {
-             console.log('input after else index',number_index);
-            console.log("input_digit - typed", typed_number);
-            numString += typed_number;
-            console.log("in the input: ", numString);
-            console.log("in the input typednumber: ", typed_number);
-            console.log("in the input index: ", number_index);
+            console.log("in input before if", operatorused);
+
+            if (operatorused) {
+                //  number_index = number_index + 1;
+                number_array.push(typed_number);
+                console.log("input number array in if=: ", number_array);
+                console.log("inputnumber_index in if", number_index);
+                numString += typed_number;
+
+            } else {
+                console.log('input after else index', number_index);
+                console.log("input_digit - typed", typed_number);
+                numString += typed_number;
+                console.log("in the input: ", numString);
+                console.log("in the input typednumber: ", typed_number);
+                console.log("in the input index: ", number_index);
 
 
-            number_array[number_index] = number_array[number_index] + typed_number;
-            console.log("input number array after=: ", number_array);
-            console.log("inputnumber_index", number_index);
-            // fullnum_array[number_index] = number_array[number_index] + typed_number;
+                number_array[number_index] = number_array[number_index] + typed_number;
+                console.log("input number array after=: ", number_array);
+                console.log("inputnumber_index", number_index);
+                // fullnum_array[number_index] = number_array[number_index] + typed_number;
 
 
-            console.log("number array after index: ", number_array);
-            console.log("number_index after index", number_index);
-        }
+                console.log("number array after index: ", number_array);
+                console.log("number_index after index", number_index);
+            }
 
             $("#inputdisplay").val(numString);
 
@@ -89,19 +95,17 @@
         }
 
         function addition() {
-
-
             console.log("in addition");
+            number_index = number_index + 1;
+            console.log("number_array", number_array);
+            console.log("number_array index", number_index);
             operator = "+";
             numString += operator;
-
             number_array.push("+");
-
-
             console.log("in addition number array", number_array);
-
-
             $("#inputdisplay").val(numString);
+            operatorused = true;
+            number_index++;
 
             /*  morenumbers(); */
         }
@@ -117,44 +121,130 @@
 
             arraylength = number_array.length;
             for (i = 0; i < arraylength; i++) {
-                console.log("arraylength - in for loop", arraylength);
+
+                console.log("%%%%begin of for loop arraylength - in for loop", arraylength);
                 console.log("number_array in for loop", number_array);
-                   
-                if (number_array[i] == "*" ) {
+                console.log("infor loop", i);
+
+                if (number_array[i] == "*") {
+                    console.log('###after if for multiply', i);
                     console.log("in the if array", number_array[i]);
                     console.log("in the if", i)
                     saveindex1 = i - 1;
                     saveindex2 = i + 1;
                     console.log("*******after set index in if*****");
-                console.log("*****saveindex1=",saveindex1, "saveindex2:", saveindex2);
-console.log("******in if array",number_array );
-console.log("*****number_array" ,[saveindex1]);
-console.log("*****number_array" ,[saveindex2]);
-console.log("*****",number_array[saveindex1]);
-console.log("*****",number_array[saveindex2]);
+                    console.log("*****saveindex1=", saveindex1, "saveindex2:", saveindex2);
+                    console.log("******in if array", number_array);
+                    console.log("*****number_array", [saveindex1]);
+                    console.log("*****number_array", [saveindex2]);
+                    console.log("*****", number_array[saveindex1]);
+                    console.log("*****", number_array[saveindex2]);
 
-       savenum = number_array[saveindex1] * number_array[saveindex2];
-     // number_array[saveindex1] = savenum;
-       console.log("aaaain if array",number_array );
-      
-         number_array.splice(0, 3 );
-          console.log("bbbbbbb",number_array);
-             console.log("$$$$inafter slice array", number_array);
+                    savenum = parseFloat(number_array[saveindex1]) * parseFloat(number_array[saveindex2]);
+                    console.log("*****after savenum", savenum);
+                    // number_array[saveindex1] = savenum;
+                    console.log("aaaain if array", number_array);
+
+                    number_array.splice(saveindex1, saveindex2, savenum);
+                    console.log("bbbbbbb", number_array);
+                    console.log("$$$$inafter slice array", number_array);
+                    i = -1;
+                    arraylength = arraylength - 2;
+
+
+                } else if (number_array[i] == "/") {
+                    console.log('###after if for divide', i);
+                    console.log("in the if array", number_array[i]);
+                    console.log("in the if", i)
+                    saveindex1 = i - 1;
+                    saveindex2 = i + 1;
+                    console.log("*******after set index in if*****");
+                    console.log("*****saveindex1=", saveindex1, "saveindex2:", saveindex2);
+                    console.log("******in if array", number_array);
+                    console.log("*****number_array", [saveindex1]);
+                    console.log("*****number_array", [saveindex2]);
+                    console.log("*****", number_array[saveindex1]);
+                    console.log("*****", number_array[saveindex2]);
+
+                    savenum = parseFloat(number_array[saveindex1]) / parseFloat(number_array[saveindex2]);
+                    console.log("*****after savenum", savenum);
+                    // number_array[saveindex1] = savenum;
+                    console.log("aaaain if array", number_array);
+
+                    number_array.splice(saveindex1, saveindex2, savenum);
+                    console.log("bbbbbbb", number_array);
+                    console.log("$$$$inafter slice array", number_array);
+                    i = -1;
+                    arraylength = arraylength - 2;
                 } else {
-                         console.log("in the  else ofif number array", number_array);
-                     }
+                    console.log("in the else");
                 }
-                   $("#inputdisplay").val(savenum);
-         
-   
+            }
 
-            /*  }else { if(number_array [i] = "-" || "+")
-                  saveindex1 = i - 1;
-                  saveindex2 = i + 1;
-                  savenum = number_array[saveindex1] * number_array[saveindex2];
-                  number_array[saveindex1] = savenum
-                  saveindex = + 1;
-                   var deletearray = number_array.slice(saveindex1, saveindex2); ) */
+            for (i = 0; i < arraylength; i++) {
+
+                console.log("%%@@2nf for of for loop arraylength - in for loop", arraylength);
+                console.log("number_array in for loop", number_array);
+                console.log("infor loop", i);
+                if (number_array[i] == "+") {
+                    console.log('###after if for plus', i);
+                    console.log("in the if array", number_array[i]);
+                    console.log("in the if", i)
+                    saveindex1 = i - 1;
+                    saveindex2 = i + 1;
+                    console.log("*******after set index in if*****");
+                    console.log("*****saveindex1=", saveindex1, "saveindex2:", saveindex2);
+                    console.log("******in if array", number_array);
+                    console.log("*****number_array", [saveindex1]);
+                    console.log("*****number_array", [saveindex2]);
+                    console.log("*****", number_array[saveindex1]);
+                    console.log("*****", number_array[saveindex2]);
+                    console.log("*****before savenum", savenum);
+                    savenum = parseInt(number_array[saveindex1]) + parseInt(number_array[saveindex2]);
+                    console.log("*****after savenum", savenum);
+                    // number_array[saveindex1] = savenum;
+                    console.log("aaaain if array", number_array);
+
+                    console.log("saveindex1", saveindex1);
+                    console.log("saveindex2", saveindex2);
+                    saveindex2 = saveindex2 + 1;
+                    number_array.splice(saveindex1, saveindex2, savenum);
+                    console.log("bbbbbbb", number_array);
+                    console.log("$$$$inafter slice array", number_array);
+                    i = -1;
+                    arraylength = arraylength - 2;
+
+                } else if (number_array[i] == "-") {
+                    console.log('###after if for minus', i);
+                    console.log("in the if array", number_array[i]);
+                    console.log("in the if", i)
+                    saveindex1 = i - 1;
+                    saveindex2 = i + 1;
+                    console.log("*******after set index in if*****");
+                    console.log("*****saveindex1=", saveindex1, "saveindex2:", saveindex2);
+                    console.log("******in if array", number_array);
+                    console.log("*****number_array", [saveindex1]);
+                    console.log("*****number_array", [saveindex2]);
+                    console.log("*****", number_array[saveindex1]);
+                    console.log("*****", number_array[saveindex2]);
+                    console.log("*****before savenum", savenum);
+                    savenum = parseFloat(number_array[saveindex1]) - parseFloat(number_array[saveindex2]);
+                    console.log("*****after savenum", savenum);
+                    // number_array[saveindex1] = savenum;
+                    console.log("aaaain if array", number_array);
+                    saveindex2 = saveindex2 + 1;
+                    number_array.splice(saveindex1, saveindex2, savenum);
+                    console.log("bbbbbbb", number_array);
+                    console.log("$$$$inafter slice array", number_array);
+                    i = -1;
+                    arraylength = arraylength - 2;
+
+                } else {
+                    console.log("in the else");
+                }
+
+                $("#inputdisplay").val(savenum);
+            }
 
         }
 
@@ -196,20 +286,23 @@ console.log("*****",number_array[saveindex2]);
 
 
         function subtraction() {
-            number_index = 1;
-            operator = '-';
-            console.log("subtraction");
-
+            console.log("in subtraction");
+            number_index = number_index + 1;
+            console.log("number_array", number_array);
+            console.log("number_array index", number_index);
+            operator = "-";
             numString += operator;
-
-            console.log("additionafter push: " + numString);
+            number_array.push("-");
+            console.log("in addition number array", number_array);
             $("#inputdisplay").val(numString);
+            operatorused = true;
+            number_index++;
         }
 
 
 
         function multiply() {
-            
+
             console.log("Multiply");
             number_index = number_index + 1;
             console.log("number_array", number_array);
@@ -217,7 +310,7 @@ console.log("*****",number_array[saveindex2]);
             operator = "*";
             numString += operator;
             number_array.push("*");
-           //number_array.push("");
+            //number_array.push("");
 
             console.log("in multiply number array", number_array);
 
@@ -237,14 +330,22 @@ console.log("*****",number_array[saveindex2]);
         }
 
         function divide() {
-            console.log("divide")
-
+            console.log("Divide");
+            number_index = number_index + 1;
             console.log("number_array", number_array);
+            console.log("number_array index", number_index);
             operator = "/";
             numString += operator;
             number_array.push("/");
-            console.log("in divide number array", number_array);
+            //number_array.push("");
+
+            console.log("in multiply number array", number_array);
+
+            //number_index = number_index + 1; 
+            console.log("in divid index", number_index);
             $("#inputdisplay").val(numString);
+            operatorused = true;
+            number_index++;
             /* calcfullstring()
              number_index = 1;
              operator = '/';
@@ -258,10 +359,14 @@ console.log("*****",number_array[saveindex2]);
         }
 
         function refresh() {
+            console.log("RRRRR refresh")
             $("#inputdisplay").val("");
-            number_array[0] = "";
-            number_array[1] = "";
-            number_index = 0;
+
+            numString = "";
+            savenum = 0;
+
+
+
         }
 
         function clearnumber() {
