@@ -60,13 +60,16 @@
         //$(document).ready(function () {
         function input_digit(typed_number) {
             console.log("in input before if", operatorused);
-
+            
             if (operatorused) {
                 //  number_index = number_index + 1;
                 number_array.push(typed_number);
+                console.log("(((((((input")
                 console.log("input number array in if=: ", number_array);
                 console.log("inputnumber_index in if", number_index);
                 numString += typed_number;
+                 console.log("inputnumber_numstring", numString);
+                 operatorused = false;
 
             } else {
                 console.log('input after else index', number_index);
@@ -139,8 +142,16 @@
                     console.log("*****number_array", [saveindex2]);
                     console.log("*****", number_array[saveindex1]);
                     console.log("*****", number_array[saveindex2]);
-
+                    console.log("&&&in multiply saveindwx2", number_array[saveindex2]);
+                      if(isNaN(number_array[saveindex2])) {
+                        console.log("in multiple isnan" );
+                          number_array[saveindex2] = number_array[saveindex1];
+                        console.log("in multiple isnan" , number_array[saveindex2]);
+                          savenum = parseFloat(number_array[saveindex1]) * parseFloat(number_array[saveindex2]);
+                      }  else { 
+                      
                     savenum = parseFloat(number_array[saveindex1]) * parseFloat(number_array[saveindex2]);
+                }
                     console.log("*****after savenum", savenum);
                     // number_array[saveindex1] = savenum;
                     console.log("aaaain if array", number_array);
@@ -165,8 +176,12 @@
                     console.log("*****number_array", [saveindex2]);
                     console.log("*****", number_array[saveindex1]);
                     console.log("*****", number_array[saveindex2]);
-
-                    savenum = parseFloat(number_array[saveindex1]) / parseFloat(number_array[saveindex2]);
+                    if (number_array[saveindex2] == 0){
+                        savenum = errmsg;
+                    } else  {
+                        savenum = parseFloat(number_array[saveindex1]) / parseFloat(number_array[saveindex2]);
+                    }
+                    
                     console.log("*****after savenum", savenum);
                     // number_array[saveindex1] = savenum;
                     console.log("aaaain if array", number_array);
@@ -178,6 +193,7 @@
                     arraylength = arraylength - 2;
                 } else {
                     console.log("in the else");
+                     savenum = number_array[saveindex1];
                 }
             }
 
@@ -200,7 +216,14 @@
                     console.log("*****", number_array[saveindex1]);
                     console.log("*****", number_array[saveindex2]);
                     console.log("*****before savenum", savenum);
-                    savenum = parseInt(number_array[saveindex1]) + parseInt(number_array[saveindex2]);
+                    if (isNaN(number_array[saveindex2])) {
+                      savenum = parseFloat(number_array[saveindex1]);  
+                       console.log("888888", savenum);
+
+                    }else{
+                     savenum = parseFloat(number_array[saveindex1]) + parseFloat(number_array[saveindex2]);
+                       console.log("99999", number_array[saveindex2]);
+               }                   
                     console.log("*****after savenum", savenum);
                     // number_array[saveindex1] = savenum;
                     console.log("aaaain if array", number_array);
@@ -359,13 +382,28 @@
         }
 
         function refresh() {
-            console.log("RRRRR refresh")
+            console.log("RRRRRrr refresh");
+            console.log("RRRRR", number_array);
+             console.log("RRRRR", numString, numString);
+
             $("#inputdisplay").val("");
 
             numString = "";
             savenum = 0;
 
-
+             console.log("RRRRR", number_array);
+             console.log("RRRRR", numString);
+          
+             console.log('arraylength', arraylength);
+            number_array.length = 0;
+             console.log("RRRRR after blank array", number_array);
+             operatorused = true;
+               
+             number_index = 0;
+             saveindex1=0;
+             saveindex2=0;
+             arraylength= 0;
+             typed_number = 0;
 
         }
 
